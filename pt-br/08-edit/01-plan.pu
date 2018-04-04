@@ -1,0 +1,21 @@
+@startuml
+
+autonumber "<b>(#)"
+
+participant Html.program as program #white
+participant Update #white
+participant View #white
+participant Update #white
+participant View.Edit as PE #white
+
+PE -> program : ChangeLevel player howMuch
+program -> Update : ChangeLevel player howMuch
+Update --> program : Command to save
+|||
+program -> Update : OnPlayerSave player
+Update --> program : Updated model
+program -> View : Updated model
+
+
+@enduml
+

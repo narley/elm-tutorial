@@ -1,0 +1,15 @@
+@startuml
+
+autonumber "<b>(#)"
+
+participant program #white
+participant init #white
+participant Update #white
+participant View #white
+
+program -> init
+init --> program : fetchPlayers
+program -> Update : (model, OnFetchPlayers response)
+Update --> program : updated model with response
+program -> View : model
+@enduml
