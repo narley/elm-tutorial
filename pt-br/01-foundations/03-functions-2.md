@@ -1,24 +1,24 @@
-# More on functions
+# Mais sobre funções
 
-## Type variables
+## Tipo Variável (Type Variable)
 
-Consider a function with a type signature like:
+Considere uma função com uma assinatura de tipo como:
 
 ```elm
 indexOf : String -> List String -> Int
 ```
 
-This hypothetical function takes a string and a list of strings and returns the index where the given string was found in the list or -1 if not found.
+Esta função hipotética pega uma string e uma lista de strings e retorna o índice onde a string foi encontrada na lista ou -1 se não for encontrada.
 
-But what if we instead have a list of integers? We wouldn't be able to use this function. However, we can make this function __generic__ by using __type variables__ or __stand-ins__ instead of specific types.
+Mas se, em vez disso, tivermos uma lista de inteiros? Nós não poderíamos usar essa função. No entanto, podemos fazer esta função __genérica__ , utilizando __tipo variável__ ou __stand-ins__ em vez de tipos específicos.
 
 ```elm
 indexOf : a -> List a -> Int
 ```
 
-By replacing `String` with `a`, the signature now says that `indexOf` takes a value of any type `a` and a list of that same type `a` and returns an integer. As long as the types match the compiler will be happy. You can call `indexOf` with a `String` and a list of `String`, or an `Int` and a list of `Int`, and it will work.
+Substituindo `String` por `a`, a assinatura agora diz que `indexOf` assume um valor de qualquer tipo `a` e uma lista desse mesmo tipo `a` e retorna um inteiro. Contanto que os tipos coincidam, o compilador ficará feliz. Você pode chamar `indexOf` com um `String` e uma lista de `String`, ou uma `Int` e uma lista `Int`, e isso funcionará.
 
-This way functions can be made more generic. You can have several __type variables__ as well:
+Desta forma, as funções podem ser mais genéricas. Você pode ter várias __tipo variável ​​de tipo__ também:
 
 ```elm
 switch : ( a, b ) -> ( b, a )
@@ -26,7 +26,7 @@ switch ( x, y ) =
   ( y, x )
 ```
 
-This function takes a tuple of types `a`, `b` and returns a tuple of types `b`, `a`. All these are valid calls:
+Esta função recebe uma tupla de tipos `a`, `b` e retorna uma tupla de tipos `b`, `a`. Todas estas são chamadas válidas:
 
 ```elm
 switch (1, 2)
@@ -34,43 +34,43 @@ switch ("A", 2)
 switch (1, ["B"])
 ```
 
-Note that any lowercase identifier can be used for type variables, `a` and `b` are just a common convention. For example the following signature is perfectly valid:
+Observe que qualquer identificador de letras minúsculas pode ser usado para tipo variável, `a` e `b` são apenas uma convenção comum. Por exemplo, a seguinte assinatura é perfeitamente válida:
 
 ```
 indexOf : thing -> List thing -> Int
 ```
 
-## Functions as arguments
+## Funções como argumentos
 
-Consider a signature like:
+Considere esta assinatura:
 
 ```elm
 map : (Int -> String) -> List Int -> List String
 ```
 
-This function:
+Esta função:
 
-- takes a function: the `(Int -> String)` part
-- a list of integers
-- and returns a list of strings
+- recebe uma função: a `(Int -> String)` parte
+- uma lista de inteiros
+- e retorna uma lista de strings
 
-The interesting part is the `(Int -> String)` fragment. This says that a function must be given conforming to the `(Int -> String)` signature.
+A parte interessante é o fragmento `(Int -> String)`. Isto diz que uma função deve ser dada em conformidade com a assinatura de `(Int -> String)`.
 
-For example, `toString` from core is such function. So you could call this `map` function like:
+Por exemplo, `toString` (da biblioteca central) tem esta assinatura. Então você poderia chamar essa função `map` como:
 
 ```elm
 map toString [1, 2, 3]
 ```
 
-But `Int` and `String` are too specific. So most of the time you will see signatures using stand-ins instead:
+Mas `Int` e `String` são tipos muito específicos. Então, na maior parte do tempo, você verá assinaturas usando stand-ins (variáveis de tipo):
 
 ```elm
 map : (a -> b) -> List a -> List b
 ```
 
-This function maps a list of `a` to a list of `b`. We don't really care what `a` and `b` represent as long as the given function in the first argument uses the same types.
+Esta função mapeia uma lista `a` para uma lista de `b`. Nós não nos importamos com o que `a` e `b` representam desde que a função dada no primeiro argumento use os mesmos tipos.
 
-For example, given functions with these signatures:
+Por exemplo, dadas funções com estas assinaturas:
 
 ```elm
 convertStringToInt : String -> Int
@@ -78,7 +78,7 @@ convertIntToString : Int -> String
 convertBoolToInt : Bool -> Int
 ```
 
-We can call the generic map like:
+Podemos chamar o `map` genérico como:
 
 ```elm
 map convertStringToInt ["Hello", "1"]
