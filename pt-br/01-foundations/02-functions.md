@@ -1,17 +1,17 @@
-# Function basics
+# Noções básicas da função
 
-This chapter covers basic Elm syntax that is important to get familiar with: functions, function signatures, partial application and the pipe operator.
+Este capítulo aborda a sintaxe básica em Elm que é importante para se familiarizar: funções, assinaturas de funções, aplicação parcial e o operador pipe.
 
-## Functions
+## Funções
 
-Elm supports two kind of functions:
+Elm suporta dois tipos de funções:
 
-- anonymous functions
-- named functions
+- funções anônimas
+- funções nomeadas
 
-### Anonymous function
+## Função anônima
 
-An anonymous function, as its name implies, is a function we create without a name:
+Uma função anônima, como o próprio nome indica, é uma função que criamos sem um nome:
 
 ```elm
 \x -> x + 1
@@ -19,12 +19,12 @@ An anonymous function, as its name implies, is a function we create without a na
 \x y -> x + y
 ```
 
-Between the backslash and the arrow, you list the arguments of the function, and on the right of the arrow, you say what to do with those arguments.
+Entre a contrabarra e a seta, você lista os argumentos da função e, à direita da seta, você diz o que fazer com esses argumentos.
 
 
-### Named functions
+### Funções nomeadas
 
-A named function in Elm looks like this:
+Uma função nomeada em Elm se parece com isso:
 
 ```elm
 addOne : Int -> Int
@@ -32,20 +32,20 @@ addOne x =
   x + 1
 ```
 
-- The first line in the example is the function signature. This signature is optional in Elm, but recommended because it makes the intention of your function clearer.
-- The rest is the implementation of the function. The implementation must follow the signature defined above.
+- A primeira linha no exemplo é a assinatura da função. Essa assinatura é opcional em Elm, mas recomendada porque torna a intenção da sua função mais clara.
+- O resto é a implementação da função. A implementação deve seguir a assinatura definida acima.
 
-In this case the signature is saying: Given an integer (Int) as argument return another integer.
+Nesse caso, a assinatura está dizendo: Dado um inteiro (Int) como argumento, retorne outro inteiro.
 
-You call it like:
+Você chama a função assim:
 
 ```
 addOne 3
 ```
 
-In Elm we use *whitespace* to denote function application (instead of using parenthesis).
+Em Elm usamos *espaço em branco* para denotar a aplicação da função (em vez de usar parênteses).
 
-Here is another named function:
+Aqui está outra função nomeada:
 
 ```elm
 add : Int -> Int -> Int
@@ -53,24 +53,24 @@ add x y =
   x + y
 ```
 
-This function takes two arguments (both Int) and returns another Int. You call this function like:
+Esta função recebe dois argumentos (ambos Int) e retorna outro Int. Você chama essa função assim:
 
 ```elm
 add 2 3
 ```
 
-### No arguments
+### Sem argumentos
 
-A function that takes no arguments is a constant in Elm:
+Uma função que não aceita argumentos é uma constante em Elm:
 
 ```elm
 name =
   "Sam"
 ```
 
-### How functions are applied
+### Como as funções são aplicadas
 
-As shown above a function that takes two arguments may look like:
+Como mostrado acima, uma função que aceita dois argumentos pode ser semelhante a:
 
 ```elm
 divide : Float -> Float -> Float
@@ -78,93 +78,92 @@ divide x y =
     x / y
 ```
 
-We can think of this signature as a function that takes two floats and returns another float:
+Podemos pensar nessa assinatura como uma função que pega dois floats e retorna outro float:
 
 ```elm
 divide 5 2 == 2.5
 ```
 
-However, this is not quite true, in Elm all functions take exactly one argument and return a result. This result can be another function. 
-Let's explain this using the function above.
+No entanto, isso não é bem verdade, em Elm todas as funções levam exatamente um argumento e retornam um resultado. Este resultado pode ser outra função.
+Vamos explicar isso usando a função acima.
 
 ```elm
--- When we do:
+-- Quando fazemos:
 
 divide 5 2
 
--- This is evaluated as:
+-- Isto é avalidado como:
 
 ((divide 5) 2)
 
--- First `divide 5` is evaluated.
--- The argument `5` is applied to `divide`, resulting in an intermediate function.
+-- Primeiro `divide 5` é avaliado.
+-- O argumento `5` é aplicado ao `divide`, resultando numa função intermediaria.
 
-divide 5 -- -> intermediate function
+divide 5 -- -> função intermediaria
 
--- Let's call this intermediate function `divide5`.
--- If we could see the signature and body of this intermediate function, it would look like:
+-- Vamos chamar esta função intermediaria `divide5`.
+-- Se pudessemos ver a assinatura e corpo desta função intermediaria, se pareceria com:
 
 divide5 : Float -> Float
 divide5 y =
   5 / y
 
--- So we have a function that has the `5` already applied.
+-- Entao temos uma função que ja possui `5` aplicado a ela.
 
--- Then the next argument is applied i.e. `2`
+-- Depois o proximo arguemnto é aplicado, por exemplo, `2`
 
 divide5 2
 
--- And this returns the final result
+-- E isto retorna o resultado final
 ```
 
-The reason we can avoid writing the parenthesis is because function application **associates to the left**.
+A razão pela qual podemos evitar de escrever os parênteses é porque a aplicação da função se **associa à esquerda** .
 
-### Grouping with parentheses
+### Agrupando com parênteses
 
-When you want to call a function with the result of another function call you need to use parentheses for grouping the calls:
+Quando você quiser chamar uma função com o resultado de outra função, você precisa usar parênteses para agrupar as chamadas:
 
 ```elm
 add 1 (divide 12 3)
 ```
 
-Here the result of `divide 12 3` is given to `add` as the second parameter.
+Aqui, o resultado de `divide 12 3` é passado para `add` como o segundo parâmetro.
 
-In contrast, in many other languages it would be written:
+Em contraste, em muitas outras linguagens, seria escrito:
 
 ```js
 add(1, divide(12, 3))
 ```
 
-## Partial application
+## Aplicação parcial
 
-As explained above every function takes only one argument and returns another function or a result.
-This means you can call a function like `add` above with only one argument, e.g. `add 2` and get a *partially applied function* back.
-This resulting function has a signature `Int -> Int`.
+Como explicado acima, toda função leva apenas um argumento e retorna outra função ou um resultado. Isso significa que você pode chamar uma função como `add` acima com apenas um argumento, por exemplo, `add 2` e obter uma função *parcialmente aplicada* de volta.
+Esta função resultante possui uma assinatura `Int -> Int`.
 
-`add 2` returns another function with the value `2` bound as the first parameter. Calling the returned function with a second value returns `2 + ` the second value:
+`add 2` retorna outra função com o valor `2` ligado como o primeiro parâmetro. Chamar a função retornada com um segundo valor retorna `2 +` o segundo valor:
 
 ```elm
 add2 = add 2
 add2 3 -- result 5
 ```
 
-Partial application is incredibly useful in Elm for making your code more readable and passing state between functions in your application.
+A aplicação parcial é incrivelmente útil em Elm para tornar seu código mais legível e passar dados entre funções em sua aplicação.
 
-## The pipe operator
+## O operador pipe (|>)
 
-As shown above you can nest functions like:
+Como mostrado acima, você pode encaixar funções umas nas outras como:
 
 ```elm
 add 1 (multiply 2 3)
 ```
 
-This is a trivial example, but consider a more complex example:
+Este é um exemplo trivial, mas considere um exemplo mais complexo:
 
 ```elm
 sum (filter (isOver 100) (map getCost records))
 ```
 
-This code is difficult to read, because it resolves inside out. The pipe operator allows us to write such expressions in a more readable way:
+Esse código é difícil de ler, porque é resolvido de dentro para fora. O operador pipe(|>) nos permite escrever essas expressões de uma maneira mais legível:
 
 ```elm
 3
@@ -172,9 +171,9 @@ This code is difficult to read, because it resolves inside out. The pipe operato
     |> add 1
 ```
 
-This relies heavily on partial application as explained before. In this example the value `3` is passed to a partially applied function `multiply 2`. Its result is in turn passed to another partially applied function `add 1`.
+Isso depende muito da aplicação parcial, conforme explicado anteriormente. Neste exemplo, o valor `3` é passado para uma função parcialmente aplicada `multiply 2`. Seu resultado, por sua vez, é passado para outra função parcialmente aplicada `add 1`.
 
-Using the pipe operator the complex example above would be written like:
+Usando o operador pipe(|>), o exemplo complexo acima seria escrito como:
 
 ```elm
 records
