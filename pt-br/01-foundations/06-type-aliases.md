@@ -1,6 +1,6 @@
-# Type aliases
+# Type aliases(pseudônimo)
 
-A __type alias__ in Elm is, as its name says, an alias for something else. For example, in Elm you have the core `Int` and `String` types. You can create aliases for them:
+Um __type alias__ em Elm é, como o próprio nome diz, um pseudônimo para alguma outra coisa. Por exemplo, em Elm você tem os tipos `Int` e `String`. Você pode criar pseudônimo para eles:
 
 ```elm
 type alias PlayerId = Int
@@ -8,23 +8,23 @@ type alias PlayerId = Int
 type alias PlayerName = String
 ```
 
-Here we have created a couple of type alias that simply point to other core types. This is useful because instead of having a function like:
+Aqui nós criamos um par de type alias que simplesmente apontam para outros tipos. Isso é útil porque, em vez de ter uma função como:
 
 ```elm
 label: Int -> String
 ```
 
-You can write it like:
+Você pode escrever como:
 
 ```elm
 label: PlayerId -> PlayerName
 ```
 
-In this way, it is much clearer what the function is asking for.
+Desta forma, é muito mais claro o que a função está pedindo.
 
-## Records
+## Registros(Records)
 
-A record definition in Elm looks like:
+Uma definição de registro em Elm se parece com:
 
 ```elm
 { id : Int
@@ -32,37 +32,37 @@ A record definition in Elm looks like:
 }
 ```
 
-If you were to have a function that takes a record, you would have to write a signature like:
+Se você tivesse uma função que recebe um registro, você teria que escrever uma assinatura como:
 
 ```elm
 label: { id : Int, name : String } -> String
 ```
 
-Quite verbose, but type aliases help a lot with this:
+Bastante detalhado, mas os type aliases (pseudônimo) ajudam muito com isso:
 
 ```elm
 type alias Player =
     { id : Int
     , name : String
     }
-  
+
 label: Player -> String
 ```
 
-Here we create a `Player` type alias that points to a record definition. Then we use that type alias in our function signature.
+Aqui nós criamos um type alias `Player` que aponta para uma definição de registro. Então usamos esse tipo de alias em nossa assinatura de função.
 
-## Constructors
+## Construtores
 
-Type aliases can be used as __constructor__ functions. Meaning that we can create a real record by using the type alias as a function.
+Type aliases(pseudônimos) podem ser usados ​​como funções construtoras . Isso significa que podemos criar um registro real usando o type alias como uma função.
 
 ```elm
 type alias Player =
     { id : Int
     , name : String
     }
-  
+
 Player 1 "Sam"
 ==> { id = 1, name = "Sam" }
 ```
 
-Here we create a `Player` type alias. Then, we call `Player` as a function with two parameters. This gives us back a record with the proper attributes. Note that the order of the arguments determines which values will be assigned to which attributes.
+Aqui nós criamos um type alias `Player`. Então, chamamos `Player` como uma função com dois parâmetros. Isso nos retorna um registro com os atributos apropriados. Observe que a ordem dos argumentos determina quais valores serão atribuídos a quais atributos.
