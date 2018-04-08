@@ -1,16 +1,16 @@
-> This page covers Elm 0.18
+> Esta página cobre Elm 0,18
 
-# Structure of Html.program
+# Estrutura do Html.program
 
-### Imports
+### Importações (import)
 
 ```elm
 import Html exposing (Html, div, text, program)
 ```
 
-- We will use the `Html` type from the `Html` module, plus a couple of functions `div`, `text` and `program`.
+- Nós usaremos o tipo `Html` do módulo `Html`, além de algumas funções `div`, `text` e `program`.
 
-### Model
+### Modelo (Model)
 
 ```elm
 type alias Model =
@@ -22,23 +22,23 @@ init =
     ( "Hello", Cmd.none )
 ```
 
-- First we define our application model as a type alias, in this kind. Here it is just a `String`.
-- Then we define an `init` function. This function provides the initial input for the application. 
+- Primeiro, definimos nosso modelo do aplicativo como um type alias do tipo `String`.
+- Depois nós definimos uma função `init`. Esta função fornece o dado inicial para o aplicativo.
 
-__Html.program__ expects a tuple with `(model, command)`. The first element in this tuple is our initial state, e.g. "Hello". The second element is an initial command to run. More on this later.
+__Html.program__ espera uma tupla com `(model, command)`. O primeiro elemento desta tupla é o nosso estado inicial, por exemplo, "Hello". O segundo elemento é um comando inicial a ser executado. Mais sobre comandos depois.
 
-When using the elm architecture, we compose all components models into a single state tree. More on this later too.
+Ao usar a arquitetura elm, compomos todos os componentes de modelos em uma única árvore de estados. Mais sobre isso mais tarde também.
 
-### Messages
+### Mensagens (Msg)
 
 ```elm
 type Msg
     = NoOp
 ```
 
-Messages are things that happen in our applications that our component responds to. In this case, the application doesn't do anything, so we only have a message called `NoOp`.
+Mensagens são coisas que acontecem em nossos aplicativos aos quais nosso componente responde. Neste caso, o aplicativo não faz nada, por isso só temos uma mensagem chamada `NoOp`.
 
-Other examples of messages could be `Expand` or `Collapse` to show and hide a widget. We use union types for messages:
+Outros exemplos de mensagens podem ser `Expand` ou `Collapse` para mostrar e ocultar um widget. Usamos union types para mensagens:
 
 ```elm
 type Msg
@@ -46,7 +46,7 @@ type Msg
     | Collapse
 ```
 
-### View
+### Visão (View)
 
 ```elm
 view : Model -> Html Msg
@@ -55,9 +55,9 @@ view model =
         [ text model ]
 ```
 
-The function `view` renders an Html element using our application model. Note that the type signature is `Html Msg`. This means that this Html element would produce messages tagged with Msg. We will see this when we introduce some interaction.
+A função `view` renderiza um elemento Html usando nosso modelo do aplicativo. Observe que a assinatura do tipo é `Html Msg`. Isso significa que esse elemento Html pode produzir mensagens marcadas com Msg. Nós veremos isso quando introduzirmos interações.
 
-### Update
+### Atualização (Update)
 
 ```elm
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -67,11 +67,11 @@ update msg model =
             ( model, Cmd.none )
 ```
 
-Next we define an `update` function, this function will be called by `Html.program` each time a message is received. This update function responds to messages updating the model and returning commands as needed. 
+Depois definimos uma função `update`, esta função será chamada pelo `Html.program` cada vez que uma mensagem é recebida. Esta função de atualização responde às mensagens(Msg) atualizando o modelo(Model) e retornando comandos(Cmd) conforme necessário.
 
-In this example, we only respond to `NoOp` and return the unchanged model and `Cmd.none` (meaning no command to perform).
+Neste exemplo, apenas respondemos `NoOp` e retornamos o modelo inalterado e `Cmd.none` (ou seja, nenhum comando para executar).
 
-### Subscriptions
+### Assinaturas (Subscriptions)
 
 ```elm
 subscriptions : Model -> Sub Msg
@@ -79,15 +79,15 @@ subscriptions model =
     Sub.none
 ```
 
-We use subscriptions to listen for external input to our application. Some examples of subscriptions are:
+Usamos assinaturas para escutar atividates externa que chegam em nosso aplicativo. Alguns exemplos de assinaturas são:
 
-- Mouse movements
-- Keyboard events
-- Browser location changes
+- Movimentos do mouse
+- Eventos de teclado
+- Alterações na localização do navegador
 
-In this case, we are not interested in any external input so we use `Sub.none`.
+No exemplo acima não estamos interessados ​​em nenhuma atividade externa, portanto, usamos `Sub.none`.
 
-### Main
+### Função Principal (Main)
 
 ```elm
 main : Program Never Model Msg
@@ -100,11 +100,4 @@ main =
         }
 ```
 
-Finally `Html.program` wires everything together and returns an html element that we can render in the page. `program` takes our `init`, `view`, `update` and `subscriptions`.
-
-
-
-
-
-
- 
+Finalmente, `Html.program` liga tudo e retorna um elemento html que podemos renderizar na página. `program` recebe as nossas funções `init`, `view`, `update` e `subscriptions`.
