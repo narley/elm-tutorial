@@ -1,18 +1,18 @@
-> This page covers Elm 0.18
+> Esta página cobre Elm 0.18
 
-# Introduction
+# Introdução
 
-When building front end applications in Elm, we use the pattern known as the Elm architecture. This pattern provides a way of creating self contained components that can be reused, combined, and composed in endless variety.
+Ao criar aplicativos front-end em Elm, usamos o padrão conhecido como arquitetura Elm. Esse padrão fornece uma maneira de criar componentes autônomos que podem ser reutilizados, combinados e compostos em infinitas variedades.
 
-Elm provides the `Html` module for this. This is easier to understand by building a small app.
+Elm fornece o módulo `Html` para isso. Para facilitar o entendimento, vamos crirar um pequeno aplicativo.
 
-Install elm-html:
+Instale o elm-html:
 
 ```elm
 elm-package install elm-lang/html
 ```
 
-Create a file called __App.elm__:
+Crie um arquivo chamado __App.elm__ :
 
 ```elm
 module App exposing (..)
@@ -84,13 +84,12 @@ main =
         }
 ```
 
-You can run this program running:
+Você pode rodar este programa executando:
 
 ```bash
 elm reactor
 ```
 
-And opening http://localhost:8000/App.elm
+E abrindo http://localhost:8000/App.elm
 
-This is a lot of code for just showing "Hello", but it will help us understand the structure of even very complex Elm applications.
-
+Este exemplo possui um monte de código para apenas mostrar "Hello", mas isso nos ajudará a entender a estrutura de aplicativos muito mais complexos em Elm.
