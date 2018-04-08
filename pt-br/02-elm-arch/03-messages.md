@@ -1,10 +1,10 @@
-> This page covers Elm 0.18
+> Esta página cobre Elm 0.18
 
-# Messages
+# Mensagens
 
-In the last section, we created an application using Html.program that was just static Html. Now let's create an application that responds to user interaction using messages.
+Na última seção, criamos um aplicativo usando o Html.program que era apenas Html estático. Agora vamos criar um aplicativo que responda à interação do usuário usando mensagens.
 
-Now, edit your **App.elm** file, or create a new one (just remember to give the module the same name that your source file has):
+Agora, edite seu arquivo **App.elm** ou crie um novo (lembre-se de dar ao módulo o mesmo nome que o seu arquivo possui):
 
 ```elm
 module App exposing (..)
@@ -86,9 +86,9 @@ main =
         }
 ```
 
-This program is very similar to the previous program we did, but now we have two messages: `Expand` and `Collapse`. You can run this program by copying it into a file and opening it using Elm reactor. 
+Este programa é muito semelhante ao programa anterior que fizemos, mas agora temos duas mensagens: `Expand` e `Collapse`. Você pode rodar este programa copiando-o em um arquivo e abrindo-o usando o Elm reactor.
 
-Let's look more closely at the `view` and `update` functions.
+Vamos olhar mais de perto as funções `view` e `update`.
 
 ### View
 
@@ -105,9 +105,9 @@ view model =
             [ button [ onClick Expand ] [ text "Expand" ] ]
 ```
 
-Depending on the state of the model we show either the collapsed or the expanded view. 
+Dependendo do estado do modelo, mostramos a view recolhida ou expandida.
 
-Note the `onClick` function. As this view is of type `Html Msg` we can trigger messages of that type using `onClick`. Collapse and Expand are both of type Msg.
+Observe a função `onClick`. Como essa view é do tipo `Html Msg`, podemos acionar mensagens desse tipo usando `onClick`. Recolher e expandir são do tipo `Msg`.
 
 ### Update
 
@@ -122,6 +122,6 @@ update msg model =
             ( False, Cmd.none )
 ```
 
-`update` responds to the possible messages. Depending on the message, it returns the desired state. When the message is `Expand`, the new state will be `True` (expanded). 
+`update` responde às possíveis mensagens. Dependendo da mensagem, retorna o estado desejado. Quando a mensagem é `Expand`, o novo estado será `True`(expandido).
 
-Next let's see how __Html.program__ orchestrates these pieces together.
+Em seguida, vamos ver como o __Html.program__ orquestra essas partes juntas.
