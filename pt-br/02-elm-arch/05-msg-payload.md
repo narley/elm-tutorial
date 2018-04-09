@@ -1,8 +1,8 @@
-> This page covers Elm 0.18
+> Esta página cobre Elm 0.18
 
-# Messages with payload
+# Mensagens com payload
 
-You can send a payload in your message:
+Você pode enviar dados na sua mensagem:
 
 ```elm
 module Main exposing (..)
@@ -77,20 +77,20 @@ main =
         }
 ```
 
-Note how the `Increment` message requires an integer:
+Perceba como a mensagem `Increment` requer um inteiro:
 
 ```elm
 type Msg
     = Increment Int
 ```
 
-Then in the view we trigger that message with a payload:
+Depois na view acionamos aquela mensagem com dados:
 
 ```elm
 onClick (Increment 2)
 ```
 
-And finally in update we use __pattern matching__ to extract the payload:
+E finalmente na função update usamos __pattern matching__ para extrair os dados:
 
 ```elm
 update msg model =
