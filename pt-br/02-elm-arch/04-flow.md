@@ -1,15 +1,15 @@
-> This page covers Elm 0.18
+> Esta página cobre Elm 0,18
 
-# Application flow
+# Fluxo de aplicação
 
-The following diagram illustrates how the pieces of our application interact with Html.program.
+O diagrama a seguir ilustra como as partes do nossa aplicação interagem com o Html.program.
 
 ![Flow](04-flow.png)
 
-1. `Html.program` calls our view function with the initial model and renders it.
-1. When the user clicks on the Expand button, the view triggers the `Expand` message.
-1. `Html.program` receives the `Expand` message which calls our `update` function with `Expand` and the current application state.
-1. The update function responds to the message by returning the updated state and a command to run (or `Cmd.none`). 
-1. `Html.program` receives the updated state, stores it, and calls the view with the updated state.
+1. `Html.program` chama nossa função `view`com o modelo(model) inicial e renderiza.
+1. Quando o usuário clica no botão Expandir, a `view` aciona a mensagem `Expand`.
+1. `Html.program` recebe a mensagem `Expand` que chama nossa função `update` com `Expand` e o estado atual da aplicação.
+1. A função `update` responde à mensagem retornando o estado atualizado e um comando para executar (ou `Cmd.none`).
+1. `Html.program` recebe o estado atualizado, armazena-o e chama a `view` com o estado atualizado.
 
-Usually `Html.program` is the only place where an Elm application holds state, it is centralised in one big state tree.
+Geralmente o `Html.program` é o único lugar onde uma aplicação Elm mantém o estado, ele é centralizado em uma grande árvore de estados.
