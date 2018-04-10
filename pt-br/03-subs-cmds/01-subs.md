@@ -1,24 +1,25 @@
-> This page covers Elm 0.18
+> Esta página cobre Elm 0.18
 
-# Subscriptions
+# Assinaturas (subscriptions)
 
-In Elm, using __subscriptions__ is how your application can listen for external input. Some examples are:
+Em Elm, para lidar com eventos externos faz-se o uso de __subscriptions__. Alguns exemplos são:
 
-- [Keyboard events](http://package.elm-lang.org/packages/elm-lang/keyboard/latest/Keyboard)
-- [Mouse movements](http://package.elm-lang.org/packages/elm-lang/mouse/latest/Mouse)
-- Browser locations changes
-- [Websocket events](http://package.elm-lang.org/packages/elm-lang/websocket/latest/WebSocket)
+- [Eventos de teclado](http://package.elm-lang.org/packages/elm-lang/keyboard/latest/Keyboard)
+- [Movimentos do mouse](http://package.elm-lang.org/packages/elm-lang/mouse/latest/Mouse)
+- Mudanças no historico do navegador
+- [Eventos do Websocket](http://package.elm-lang.org/packages/elm-lang/websocket/latest/WebSocket)
 
-To illustrate this, let's create an application that responds to both keyboard and mouse events.
 
-First, install the required libraries:
+Para ilustrar isso, vamos criar um aplicativo que responda a eventos de teclado e mouse.
+
+Primeiro, instale as bibliotecas necessárias:
 
 ```bash
 elm-package install elm-lang/mouse
 elm-package install elm-lang/keyboard
 ```
 
-Then, create this program:
+Em seguida, crie este programa:
 
 ```elm
 module Main exposing (..)
@@ -99,13 +100,13 @@ main =
         }
 ```
 
-Run this program with Elm reactor. Each time you click the mouse you will see the counter increasing by one; each time you press a key you will see the counter increasing by 2.
+Execute este programa com Elm reactor. Cada vez que você clicar no mouse, verá o contador aumentando em um; cada vez que você pressionar uma tecla, verá o contador aumentar em 2.
 
 ---
 
-Let's review the important parts relevant to subscriptions in this program.
+Vamos rever as partes importantes relevantes para assinaturas neste programa.
 
-### Messages
+### Mensagens (Messages)
 
 ```elm
 type Msg
@@ -113,9 +114,9 @@ type Msg
     | KeyMsg Keyboard.KeyCode
 ```
 
-We have two possible messages: `MouseMsg` and `KeyMsg`. These will trigger when the mouse or the keyboard are pressed, accordingly.
+Nós temos duas mensagens possíveis: `MouseMsg` e `KeyMsg`. Estas serão acionadas quando o mouse ou o teclado forem pressionados, de acordo.
 
-### Update
+### Atualização (Update)
 
 ```elm
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -128,9 +129,9 @@ update msg model =
             ( model + 2, Cmd.none )
 ```
 
-Our update function responds to each message differently, so it increases the counter by one when we press the mouse or by two when we press a key.
+Nossa função `update` responde a cada mensagem de maneira diferente, então adiciona 1 ao contador quando pressionamos o mouse ou adiciona 2 quando pressionamos uma tecla.
 
-### Subscriptions
+### Assinaturas (Subscriptions)
 
 ```elm
 subscriptions : Model -> Sub Msg
@@ -141,8 +142,8 @@ subscriptions model =
         ]
 ```
 
-Here we declare the things we want to listen to. We want to listen to `Mouse.clicks` ➊ and `Keyboard.downs` ➋. Both of these functions take a message constructor and return a subscription.
+Aqui nós declaramos os eventos que queremos lidar. Queremos lidar com `Mouse.clicks` ➊ e `Keyboard.downs` ➋. Ambas funções usam um construtor de mensagem e retornam uma assinatura.
 
-We use `Sub.batch` ➌ so we can listen to both of them. `batch` takes a list of subscriptions and returns one subscription which includes all of them.
+Nós usamos `Sub.batch` ➌ para que possamos ouvir os dois. `batch` recebe uma lista de assinaturas e retorna uma assinatura que inclui todas elas.
 
-Also note that in this example our subscriptions are static, they don't change during the life our application. But they don't have to be like that. They could change depending on what is in the `model`, this is why we pass the model to `subscriptions`. 
+Observe também que neste exemplo nossas assinaturas são estáticas, elas não mudam durante a execução da nossa aplicação. Mas elas não precisam ser assim. Eles podem mudar dependendo do que está no `model`, é por isso que nós passamos o `model`' para `subscriptions`.
