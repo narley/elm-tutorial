@@ -1,15 +1,15 @@
-> This page covers Tutorial v2. Elm 0.18.
+> Esta página cobre o Tutorial v2. Elm 0.18.
 
-# Starting an application
+# Iniciando uma aplicação
 
-In this chapter we start building an example Elm application.
+Neste capítulo, começaremos a criar uma aplicação em Elm.
 
-This tutorial will cover the following aspects about building an application:
+Este tutorial abordará os seguintes aspectos sobre a criação de uma aplicação:
 
-- Application structure
-- Fetching resources
+- Estrutura da aplicação
+- Requisitando recursos
 - Views
-- Routing
-- User interaction and saving changes
+- Roteamento (Routing)
+- Interação do usuário e salvar as alterações
 
-See next page for details about the application.
+Veja a próxima página para detalhes sobre a aplicação.
