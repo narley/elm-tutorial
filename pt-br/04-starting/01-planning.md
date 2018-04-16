@@ -1,37 +1,37 @@
-> This page covers Tutorial v2. Elm 0.18.
+> Esta página cobre o Tutorial v2. Elm 0.18.
 
-# Planning
+# Planejamento
 
-We will build a basic application to track an imaginary role playing game.
+Vamos construir uma aplicação básica para rastrear um RPG imaginário.
 
-### Resources
+### Recursos
 
-During the rest of this guide I will use the word __resources__ to refer to models that are the subject of our application. These are __players__ in this application. Using the word __model__ can be confusing because component specific state is also a model (for example the expanded / collapse state of a component).
+Durante o restante deste guia, usarei a palavra __resources__ para se referir a modelos que são os sujeitors de nossa aplicação. Estes são os __players__ nesta aplicação. Usar a palavra __model__ pode ser confuso porque o estado específico do componente também é um modelo (por exemplo, o estado expandido / recolhido de um componente).
 
 ## Wireframes
 
-The application will have two views:
+O aplicativo terá duas telas:
 
 ![Plan](01-planning.png)
 
-### Screen 1
+### Tela 1
 
-Will show a list of players. From here you can:
+Vai mostrar uma lista de jogadores. Daqui você pode:
 
-- Navigate to edit a player
+- Editar um jogador
 
-### Screen 2
+### Tela 2
 
-Shows the edit view for a player. In this screen you can:
+Mostra a tela para editar um jogador. Nesta tela você pode:
 
-- Change the level
+- Alterar o nível
 
-This is a very simple application that will demonstrate:
+Esta é uma aplicação muito simples que demonstrará:
 
-- Multiple views
-- Nested components
-- Breaking the application into resources
-- Routing
-- Shared state across the application
-- Read and edit operation on the records
-- Ajax requests
+- Múltiplas telas
+- Componentes aninhados
+- Particionar o aplicativo em diversos recursos
+- Roteamento
+- Estado compartilhado na aplicação
+- Ler e editar operação nos registros
+- Chamadas Ajax
