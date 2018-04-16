@@ -1,34 +1,34 @@
-> This page covers Tutorial v2. Elm 0.18.
+> Esta página cobre o Tutorial v2. Elm 0.18.
 
-# Backend
+# Back-end
 
-We will need a backend for our application, we can use __json-server__ for this.
+Vamos precisar de um backend para nossa aplicação, podemos usar o __json-server__ para isso.
 
-[json-server](https://github.com/typicode/json-server) is an npm package that provides a quick way to create fake APIs.
+[json-server](https://github.com/typicode/json-server) é um pacote npm que fornece uma maneira rápida de criar APIs falsas.
 
-Start a new node project:
+Inicie um novo projeto de Node:
 
 ```bash
 yarn init
 ```
 
-Accept all the defaults.
+Aceite todos os padrões.
 
-Install __json-server__:
+Instale o __json-server__ :
 
 ```bash
 yarn add json-server@0.9.5
 ```
 
-Make __api.js__ in the root of the project:
+Crie __api.js__ na raiz do projeto:
 
 ```js
 var jsonServer = require('json-server')
 
-// Returns an Express server
+// Retorna um servidor Express
 var server = jsonServer.create()
 
-// Set default middlewares (logger, static, cors and no-cache)
+// Define um middlewares padrao (logger, static, cors e no-cache)
 server.use(jsonServer.defaults())
 
 var router = jsonServer.router('db.json')
@@ -38,7 +38,7 @@ console.log('Listening at 4000')
 server.listen(4000)
 ```
 
-Add __db.json__ at the root:
+Crie __db.json__ na raiz:
 
 ```json
 {
@@ -53,12 +53,12 @@ Add __db.json__ at the root:
 }
 ```
 
-Start the server by running:
+Inicie o servidor executando:
 
 ```bash
 node api.js
 ```
 
-Test this fake API by browsing to:
+Teste esta API falsa acessando:
 
 - <http://localhost:4000/players>
