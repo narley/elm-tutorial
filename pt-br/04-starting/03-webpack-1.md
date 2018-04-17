@@ -1,47 +1,47 @@
-> This page covers Tutorial v2. Elm 0.18.
+> Esta página cobre o Tutorial v2. Elm 0.18.
 
 # Webpack
 
-__Elm reactor__ is great for prototyping simple applications, but for a bigger app it falls short. As it is now, __reactor__ doesn't support talking with external JavaScript or importing external CSS. To overcome these issues we will use __Webpack__ to compile our Elm code instead of Elm reactor.
+__Elm reactor__ é ótimo para prototipar aplicativos simples, mas para um aplicativo maior ele fica aquém. Por enquanto o __reactor__ não suporta comunicacao com JavaScript externo ou importar CSS externo. Para superar esses problemas, usaremos o __Webpack__ para compilar nosso código Elm em vez do __Elm reactor__ .
 
-Webpack is a code bundler. It looks at your dependency tree and only bundles the code that is imported. Webpack can also import CSS and other assets inside a bundle. Read more about Webpack [here](https://webpack.github.io/).
+O Webpack é um empacotador de código. Ele olha para a sua árvore de dependência e apenas empacota o código que é importado. O Webpack também pode importar CSS e outras dependencias dentro de um pacote. Leia mais sobre o Webpack [aqui](https://webpack.github.io/).
 
-There are many alternatives that you can use to achieve the same as Webpack, for example:
+Existem muitas alternativas que você pode usar para obter o mesmo que o Webpack, por exemplo:
 
 - [Browserify](http://browserify.org/)
 - [Gulp](http://gulpjs.com/)
 - [StealJS](http://stealjs.com/)
 - [JSPM](http://jspm.io/)
-- Or if using a framework like Rails or Phoenix you can bundle the Elm code and CSS using them.
+- Ou, se estiver usando uma estrutura como Rails ou Phoenix, você pode agrupar o código Elm e o CSS usando estas estruturas.
 
-## Requirements
+## Requisitos
 
-You will need Node JS version 5.1 or more for these libraries to work as expected.
+Você precisará do Node JS versão 5.1 ou superior para que essas bibliotecas funcionem conforme o esperado.
 
-## Installing webpack and loaders
+## Instalando o webpack e os carregadores
 
-Install webpack and associated packages:
+Instale o webpack e os pacotes associados:
 
 ```bash
 yarn add webpack webpack-dev-server elm-webpack-loader file-loader style-loader css-loader url-loader
 ```
 
-This tutorial is using __webpack__ version __2.2__ and __elm-webpack-loader__ version __4.2__.
+Este tutorial está usando o __webpack__ versão __2.2__ e o __elm-webpack-loader__ versão __4.2__ .
 
-Loaders are extensions that allow webpack to load different formats. E.g. `css-loader` allows webpack to load .css files.
+Carregadores são extensões que permitem que o webpack carregue diferentes formatos. Por exemplo, `css-loader` permite que o webpack carregue arquivos .css.
 
-We also want to use a couple of extra libraries:
+Também queremos usar algumas bibliotecas extras:
 
-- [Basscss](http://www.basscss.com/) for CSS, `ace-css` is the Npm package that bundles common Basscss styles
-- [FontAwesome](https://fortawesome.github.io/Font-Awesome/) for icons
+- [Basscss](http://www.basscss.com/) para CSS, `ace-css` é o pacote Npm que empacota estilos Basscss comuns
+- [FontAwesome](https://fortawesome.github.io/Font-Awesome/) para ícones
 
 ```bash
 yarn add ace-css@1.1 font-awesome@4
 ```
 
-## Webpack config
+## Configuração do Webpack
 
-We need to add a __webpack.config.js__ at the root:
+Precisamos adicionar um __webpack.config.js__ na raiz:
 
 ```js
 var path = require("path");
@@ -99,7 +99,7 @@ module.exports = {
 };
 ```
 
-#### Things to note:
+#### Coisas para observar:
 
-- This config creates a Webpack dev server, see the key `devServer`. We will be using this server for development instead of Elm reactor.
-- Entry point for our application will be `./src/index.js`, see the `entry` key.
+- Esta configuração cria um servidor de desenvolvimento Webpack, veja a chave `devServer`. Nós usaremos este servidor para desenvolvimento em vez do Elm reactor.
+- O ponto de entrada para a nossa aplicação será `./src/index.js`, veja a chave `entry`.
