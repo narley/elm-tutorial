@@ -1,10 +1,10 @@
-> This page covers Tutorial v2. Elm 0.18.
+> Esta página cobre o Tutorial v2. Elm 0.18.
 
 # Webpack 3
 
-## Initial Elm app
+## Inicio da aplicação Elm
 
-Create a basic Elm app. In __src/Main.elm__:
+Crie um aplicativo Elm básico. Em __src/Main.elm__ :
 
 ```elm
 module Main exposing (..)
