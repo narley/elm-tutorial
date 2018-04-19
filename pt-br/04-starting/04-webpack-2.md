@@ -1,10 +1,10 @@
-> This page covers Tutorial v2. Elm 0.18.
+> Esta página cobre o Tutorial v2. Elm 0.18.
 
 # Webpack 2
 
 ## index.html
 
-As we are not using Elm reactor anymore we will need to create our own HTML for containing the application. Create __src/index.html__:
+Como não estamos mais usando o __Elm reactor__, precisaremos criar nosso próprio HTML para conter o aplicativo. Crie __src/index.html__ :
 
 ```html
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ As we are not using Elm reactor anymore we will need to create our own HTML for 
 
 ## index.js
 
-This is the entry point that Webpack will look for when creating a bundle. Add __src/index.js__:
+Este é o ponto de entrada que o Webpack irá procurar ao criar o pacote. Adicione __src/index.js__ :
 
 ```js
 'use strict';
@@ -30,29 +30,29 @@ This is the entry point that Webpack will look for when creating a bundle. Add _
 require('ace-css/css/ace.css');
 require('font-awesome/css/font-awesome.css');
 
-// Require index.html so it gets copied to dist
+// Importa index.html para que possa ser copiado ao dist
 require('./index.html');
 
 var Elm = require('./Main.elm');
 var mountNode = document.getElementById('main');
 
-// .embed() can take an optional second argument. This would be an object describing the data we need to start a program, i.e. a userID or some token
+// .embed() pode receber um segundo argumento opcional. Este argumento pode ser um objecto descrevendo os dados que precisaremos para iniciar o programa, por exemplo, um userID ou algum token
 var app = Elm.Main.embed(mountNode);
 ```
 
-## Install Elm packages
+## Instalar pacotes Elm
 
-Run:
+Execute:
 
 ```bash
 elm-package install elm-lang/html
 ```
 
-After doing this there should be a file called __elm-package.json__ in the root of your project.
+Depois de fazer isso, deve haver um arquivo chamado __elm-package.json__ na raiz do seu projeto.
 
-## Source directory
+## Diretório src
 
-We will be adding all our source code in the `src` folder, so we need to tell Elm where to search for dependencies. In __elm-package.json__ change:
+Nós estaremos adicionando todo o nosso código-fonte na pasta `src`, então precisamos informar ao Elm onde procurar por dependências. No arquivo __elm-package.json__ faça a seguinte mudança:
 
 ```json
 ...
@@ -62,4 +62,4 @@ We will be adding all our source code in the `src` folder, so we need to tell El
 ...
 ```
 
-Without this the Elm compiler will try to find the imports in the root of our project and fail.
+Sem isso, o compilador Elm tentará encontrar as importações na raiz do nosso projeto e falhará.
