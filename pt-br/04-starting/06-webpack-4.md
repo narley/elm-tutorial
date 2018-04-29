@@ -1,10 +1,10 @@
-> This page covers Tutorial v2. Elm 0.18.
+> Esta página cobre o Tutorial v2. Elm 0.18.
 
 # Webpack 4
 
 ## package.json
 
-Finally we want to add some npm scripts so we can run our servers easily. In __package.json__ add a `scripts` section:
+Finalmente, queremos adicionar alguns scripts npm para que possamos executar nossos servidores facilmente. Em __package.json__ adicione uma sseção `script`:
 
 ```json
 {
@@ -18,28 +18,28 @@ Finally we want to add some npm scripts so we can run our servers easily. In __p
 }
 ```
 
-- So now `yarn api` will run our fake server.
-- `yarn build` will create a webpack build and put the bundles in `dist`.
-- `yarn client` runs the webpack dev server.
+- Então agora `yarn api` vai rodar nosso servidor falso.
+- `yarn build` criará uma compilação de webpack e colocará os pacotes em `dist`.
+- `yarn client` executa o servidor de desenvolvimento webpack.
 
 ## Node Foreman
 
-We have two servers to run for developing: the Api and the Frontend, we will need to launch both manually to test our application, this is ok but there is a nicer way using a package called Foreman.
+Nós temos dois servidores para executar: o Api e o Frontend, nós precisaremos inicializar ambos manualmente para testar nosso aplicativo, isto é ok, mas existe uma maneira mais prática de iniciar os servidores usando um pacote chamado Foreman.
 
-Install Node Foreman:
+Instale o Node Foreman:
 
 ```
 yarn add foreman
 ```
 
-Then create a file called `Procfile` in the root of the project with:
+Em seguida, crie um arquivo chamado `Procfile` na raiz do projeto com:
 
 ```
 api: yarn api
 client: yarn client
 ```
 
-Edit __package.json__ to include a new script:
+Edite o __package.json__ para incluir um novo script:
 
 ```
 "scripts": {
@@ -48,16 +48,16 @@ Edit __package.json__ to include a new script:
 }
 ```
 
-## Test it
+## Teste
 
-Let's test our setup
+Vamos testar nossa configuração.
 
-In a terminal window run:
+Em uma janela de terminal, execute:
 
 ```bash
 yarn start
 ```
 
-If you browse to `http://localhost:3000/` you should see our application, which outputs "Hello". Use `Ctrl-c` to stop the servers.
+Acesse `http://localhost:3000/` e você deve ver o nosso aplicativo, que produz "Hello". Use `Ctrl-c` para parar os servidores.
 
-Your application code should look like <https://github.com/sporto/elm-tutorial-app/tree/018-02-webpack>.
+O código do seu aplicativo deve ser semelhante a <https://github.com/sporto/elm-tutorial-app/tree/018-02-webpack>.
