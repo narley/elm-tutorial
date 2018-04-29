@@ -1,58 +1,59 @@
-> This page covers Tutorial v2. Elm 0.18.
+> Esta página cobre o Tutorial v2. Elm 0.18.
 
-# Multiple modules
+# Vários módulos
 
-Our application is growing, so keeping things in one file will quickly become difficult to maintain.
+Nosso aplicativo está crescendo, portanto, manter as coisas em um arquivo rapidamente se torna difícil de manter.
 
-### Circular dependencies
+### Dependências circulares
 
-Another issue we are likely to hit at some point will be circular dependencies. For example we might have:
+Outra questão que provavelmente chegaremos em algum momento serão as dependências circulares. Por exemplo, podemos ter:
 
-- A `Main` module which has a `Player` type on it.
-- A `View` module that imports the `Player` type declared in `Main`.
-- `Main` importing `View` to render the view.
+- Um `Main` módulo que tem um tipo `Player` nele.
+- Um módulo `View` que importa o tipo `Player` declarado em `Main`.
+- `Main` importando `View` para renderizar a tela.
 
-We now have a circular dependency:
+Agora temos uma dependência circular:
 
 ```elm
 Main --> View
 View --> Main
 ```
 
-#### How to break it up?
+#### Como acabar com isso?
 
-In this case we need to move the `Player` type out of `Main`, to some place where it can be imported by both `Main` and `View`. 
+Nesse caso, precisamos remover o tipo `Player` de `Main` e coloar num local onde ele pode ser importado por ambos `Main` e `View`.
 
-To deal with circular dependencies in Elm, the easiest thing to do is to split your application into smaller modules. In this particular example we can create another module that can be imported by both `Main` and `View`. We will have three modules:
+Para lidar com dependências circulares em Elm, o mais fácil é dividir seu aplicativo em módulos menores. Neste exemplo em particular, podemos criar outro módulo que pode ser importado por ambos `Main` e `View`. Nós teremos três módulos:
 
 - Main
 - View
-- Models (contains the Player type)
+- Models (contém o tipo Player)
 
-Now the dependencies will be:
+Agora as dependências serão:
 
 ```elm
 Main --> Models
 View --> Models
 ```
 
-There is no circular dependency anymore.
+Não há mais dependência circular.
 
-Try creating separate modules for things like __messages__, __models__, __commands__ and __utilities__, which are modules that are usually imported by many components.
+Tente criar módulos separados para coisas como __messages__ , __models__ , __commands__ e __utilities__ , que são módulos que geralmente são importados por muitos componentes.
 
 ---
 
-Let's break the application into smaller modules:
+Vamos dividir o aplicativo em módulos menores:
 
-First, check your elm-package.json.  Make sure `"source-directories"` points to the directory where our new modules will go.  In this example, it will be the src directory.
+Primeiro, verifique seu elm-package.json. Certifique-se de `"source-directories"` apontar para o diretório onde nossos novos módulos estão. Neste exemplo, será o diretório src.
+
 ```json
     "source-directories": [
         "src"
     ],
 ```
-Now we are ready to create the modules
+Agora estamos prontos para criar os módulos
 
-__src/Msgs.elm__
+__src / Msgs.elm__
 
 ```elm
 module Msgs exposing (..)
@@ -140,10 +141,8 @@ main =
         }
 ```
 
-You can find the code here <https://github.com/sporto/elm-tutorial-app/tree/018-v02-03-multiple-modules>
+Você pode encontrar o código aqui <https://github.com/sporto/elm-tutorial-app/tree/018-v02-03-multiple-modules>.
 
 ---
 
-There are lots of little modules now, which is overkill for a trivial application. But for a bigger application splitting it up makes it easier to work with.
-
-
+Existem varios módulos pequenos agora, o que é um exagero para uma aplicação trivial. Mas, para um aplicação maior, a utilização de módulos torna-se essencial.
